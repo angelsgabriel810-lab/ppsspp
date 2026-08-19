@@ -61,7 +61,6 @@ jobs:
           echo "count=${{steps.valid-tags.outputs.count}}"
 
       - name: Make gradlew executable
-        working-directory: android
         run: chmod +x gradlew
         
       - name: Assemble APK
