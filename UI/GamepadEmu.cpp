@@ -206,7 +206,7 @@ void MultiTouchButton::Draw(UIContext &dc) {
 	float y = bounds_.centerY();
 	// Hack round the fact that the center of the rectangular picture the triangle is contained in
 	// is not at the "weight center" of the triangle. Same for fast-forward.
-	if (img_ == ImageID("I_TRIANGLE"))
+	if (img_ == ImageID("I_XBOX_BTN_Y"))
 		y -= 2.8f * scale;
 	if (img_ == ImageID("I_FAST_FORWARD_LINE"))
 		x += 2.0f * scale;
@@ -1064,13 +1064,13 @@ GamepadEmuView::GamepadEmuView(const TouchControlConfig &config, float xres, flo
 
 	// touchActionButtonCenter.show will always be true, since that's the default.
 	if (config.bShowTouchCircle)
-		addPSPButton(CTRL_CIRCLE, "Circle button", roundImage, ImageID("I_ROUND"), ImageID("I_CIRCLE"), config.touchActionButtonCenter, circleOffset);
+		addPSPButton(CTRL_CIRCLE, "Circle button", roundImage, ImageID("I_ROUND"), ImageID("I_XBOX_BTN_B"), config.touchActionButtonCenter, circleOffset);
 	if (config.bShowTouchCross)
-		addPSPButton(CTRL_CROSS, "Cross button", roundImage, ImageID("I_ROUND"), ImageID("I_CROSS"), config.touchActionButtonCenter, crossOffset);
+		addPSPButton(CTRL_CROSS, "Cross button", roundImage, ImageID("I_ROUND"), ImageID("I_XBOX_BTN_A"), config.touchActionButtonCenter, crossOffset);
 	if (config.bShowTouchTriangle)
-		addPSPButton(CTRL_TRIANGLE, "Triangle button", roundImage, ImageID("I_ROUND"), ImageID("I_TRIANGLE"), config.touchActionButtonCenter, triangleOffset);
+		addPSPButton(CTRL_TRIANGLE, "Triangle button", roundImage, ImageID("I_ROUND"), ImageID("I_XBOX_BTN_Y"), config.touchActionButtonCenter, triangleOffset);
 	if (config.bShowTouchSquare)
-		addPSPButton(CTRL_SQUARE, "Square button", roundImage, ImageID("I_ROUND"), ImageID("I_SQUARE"), config.touchActionButtonCenter, squareOffset);
+		addPSPButton(CTRL_SQUARE, "Square button", roundImage, ImageID("I_ROUND"), ImageID("I_XBOX_BTN_X"), config.touchActionButtonCenter, squareOffset);
 
 	addPSPButton(CTRL_START, "Start button", rectImage, ImageID("I_RECT"), ImageID("I_START"), config.touchStartKey);
 	addPSPButton(CTRL_SELECT, "Select button", rectImage, ImageID("I_RECT"), ImageID("I_SELECT"), config.touchSelectKey);
@@ -1084,18 +1084,18 @@ GamepadEmuView::GamepadEmuView(const TouchControlConfig &config, float xres, flo
 		});
 	}
 
-	addPSPButton(CTRL_LTRIGGER, "Left shoulder button", shoulderImage, ImageID("I_SHOULDER"), ImageID("I_L"), config.touchLKey);
-	PSPButton *rTrigger = addPSPButton(CTRL_RTRIGGER, "Right shoulder button", shoulderImage, ImageID("I_SHOULDER"), ImageID("I_R"), config.touchRKey);
+	addPSPButton(CTRL_LTRIGGER, "Left shoulder button", shoulderImage, ImageID("I_SHOULDER"), ImageID("I_XBOX_LB"), config.touchLKey);
+	PSPButton *rTrigger = addPSPButton(CTRL_RTRIGGER, "Right shoulder button", shoulderImage, ImageID("I_SHOULDER"), ImageID("I_XBOX_RB"), config.touchRKey);
 	if (rTrigger)
 		rTrigger->FlipImageH(true);
+
+	if (config.touchAnalogStick.show)
+		Add(new PSPStick(stickBg, "Left analog stick", stickImage, ImageID("I_STICK"), 0, config.touchAnalogStick.scale, buttonLayoutParams(config.touchAnalogStick)));
 
 	if (config.touchDpad.show) {
 		const ImageID dirImage = g_Config.iTouchButtonStyle ? ImageID("I_DIR_LINE") : ImageID("I_DIR");
 		Add(new PSPDpad(dirImage, "D-pad", ImageID("I_DIR"), ImageID("I_ARROW"), config.touchDpad.scale, config.fDpadSpacing, buttonLayoutParams(config.touchDpad)));
 	}
-
-	if (config.touchAnalogStick.show)
-		Add(new PSPStick(stickBg, "Left analog stick", stickImage, ImageID("I_STICK"), 0, config.touchAnalogStick.scale, buttonLayoutParams(config.touchAnalogStick)));
 
 	if (config.touchRightAnalogStick.show) {
 		if (g_Config.bRightAnalogCustom)
@@ -1266,7 +1266,7 @@ void GestureGamepad::Draw(UIContext &dc) {
 	uint32_t colorBg = colorAlpha(GetButtonColor(), opacity);
 
 	if (GetZone().bAnalogGesture && dragPointerId_ != -1) {
-		dc.Draw()->DrawImage(ImageID("I_CIRCLE"), downX_, downY_, 0.7f, colorBg, ALIGN_CENTER);
+		dc.Draw()->DrawImage(ImageID("I_XBOX_BTN_B"), downX_, downY_, 0.7f, colorBg, ALIGN_CENTER);
 	}
 }
 

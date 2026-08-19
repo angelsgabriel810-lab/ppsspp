@@ -47,6 +47,16 @@ struct ImageMeta {
 // I've added shadows to most of those for now. See customKeyImages in GamepadEmu.h.
 static const ImageMeta g_uiImageIDs[] = {
 	{"I_SOLIDWHITE", false},
+// --- BOUTONS XBOX ---
+    {"I_XBOX_BTN_A", true},
+    {"I_XBOX_BTN_B", true},
+    {"I_XBOX_BTN_X", true},
+    {"I_XBOX_BTN_Y", true},
+    {"I_XBOX_LB", true},
+    {"I_XBOX_LT", true},
+    {"I_XBOX_RB", true},
+    {"I_XBOX_RT", true},
+    {"I_XBOX_GUIDE", true},
 	{"I_CROSS", true},
 	{"I_CIRCLE", true},
 	{"I_SQUARE", true},
