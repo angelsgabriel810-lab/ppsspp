@@ -58,7 +58,11 @@ jobs:
       - name: Test androidGitVersion
         run: |
           echo "count=${{steps.valid-tags.outputs.count}}"
-          
+
+      - name: Make gradlew executable
+        working-directory: android
+        run: chmod +x gradlew
+        
       - name: Assemble APK
         working-directory: android
         run: ./gradlew assemble${{ github.event.inputs.buildVariant }} --stacktrace
