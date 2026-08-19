@@ -59,7 +59,6 @@ jobs:
         working-directory: android
         run: |
           echo "count=${{steps.valid-tags.outputs.count}}"
-          ./gradlew --quiet androidGitVersion
 
       - name: Make gradlew executable
         working-directory: android
