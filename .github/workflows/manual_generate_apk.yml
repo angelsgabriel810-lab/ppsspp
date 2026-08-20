@@ -57,7 +57,7 @@ jobs:
       
       - name: Assemble APK
         working-directory: android
-        run: gradel assemble${{ github.event.inputs.buildVariant }} --stacktrace
+        run: gradle assemble${{ github.event.inputs.buildVariant }} --stacktrace
       #- name: Gradle Test
       #  run: bash ./gradlew test${{ github.event.inputs.buildVariant }}UnitTest --stacktrace
       
