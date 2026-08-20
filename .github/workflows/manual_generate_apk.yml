@@ -41,7 +41,7 @@ jobs:
           git fetch --deepen=15000 --no-recurse-submodules --tags --force upstream || exit 0
         
       - name: Setup JDK
-        uses: actions/setup-java@v5.6.0
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -54,19 +54,10 @@ jobs:
       #  uses: nttld/setup-ndk@v1
       #  with:
       #    ndk-version: r21e
-
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
-
-      - name: Test androidGitversion
-        working-directory: android
-        run: |
-          echo "count=${{steps.valid-tags.outputs.count}}"
-          ./gradlew --quiet androidGitVersion
-
+      
       - name: Assemble APK
         working-directory: android
-        run: ./gradlew assemble${{ github.event.inputs.buildVariant }} --stacktrace
+        run: gradel assemble${{ github.event.inputs.buildVariant }} --stacktrace
       #- name: Gradle Test
       #  run: bash ./gradlew test${{ github.event.inputs.buildVariant }}UnitTest --stacktrace
       
