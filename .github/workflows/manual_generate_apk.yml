@@ -56,7 +56,6 @@ jobs:
       #    ndk-version: r21e
 
       - name: Make gradlew executable
-        working-directory: android
         run: chmod +x android/gradlew
 
       - name: Test androidGitversion
