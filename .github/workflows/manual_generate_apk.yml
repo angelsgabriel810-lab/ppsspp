@@ -57,7 +57,7 @@ jobs:
 
       - name: Make gradlew executable
         working-directory: android
-        run: chmod +x gradlew
+        run: chmod +x android/gradlew
 
       - name: Test androidGitversion
         working-directory: android
